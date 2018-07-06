@@ -1,0 +1,27 @@
+server:
+  port: 8791
+spring:
+  application:
+    name: eureka-monitor-client
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka2:8762/eureka/,http://eureka1:8761/eureka/
+feign:
+  hystrix:
+    enabled: true
+management:
+#  server:
+#    port: 9003
+  endpoints:
+    web:
+#      base-path: / #修改访问路径  2.0之前默认是/   2.0默认是 /actuator  可以通过这个属性值修改
+      exposure:
+        include: '*'  #开放所有页面节点  默认只开启了health、info两个节点
+turbine:
+  aggregator:
+    cluster-config: default     #需要监控的服务集群名
+  app-config: consumer-ribbon,consumer-feign    #需要监控的服务名
+  cluster-name-expression: new String("default")
+#  instanceUrlSuffix:
+#      default: actuator/hystrix.stream    #key是clusterConfig集群的名字，value是hystrix监控的后缀，springboot2.0为actuator/hystrix.stream

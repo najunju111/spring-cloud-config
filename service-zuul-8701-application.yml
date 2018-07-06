@@ -1,0 +1,25 @@
+server:
+  port: 8701
+spring:
+  application:
+    name: service-zuul
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka2:8762/eureka/,http://eureka1:8761/eureka/
+zuul:
+  prefix: /v1
+  routes:
+    allapi:
+      path: /allapi/**
+      serviceId: eureka-client
+    ribbonapi:
+      path: /ribbonapi/**
+      serviceId: consumer-ribbon
+    feignapi:
+      path: /feignapi/**
+      serviceId: consumer-feign
+
+#http://localhost:8701/v1/allapi/hello?name=cralor
+#http://localhost:8701/v1/ribbonapi/hello?name=cralor
+#http://localhost:8701/v1/feignapi/hello?name=cralor

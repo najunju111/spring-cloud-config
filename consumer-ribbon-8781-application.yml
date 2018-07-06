@@ -1,5 +1,5 @@
 server:
-  port: 8781
+  port: 8785
 spring:
   application:
     name: consumer-ribbon

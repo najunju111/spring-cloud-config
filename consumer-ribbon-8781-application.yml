@@ -18,4 +18,4 @@ management:
 mytest:
   bus:
     rabbit:
-      text: 123456789
+      text: 123456789...
